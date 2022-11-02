@@ -65,6 +65,23 @@ void MainMenu::testBranchAndBound()
     }
 }
 
+void MainMenu::testDynamicProgramming()
+{
+    if (!graph.getCount())
+    {
+        std::cout << "Brak danych\n";
+        std::cin.ignore();
+        std::cin.get();
+    }
+    else
+    {
+        DynamicProgramming dynamicProgramming(graph);
+        dynamicProgramming.apply();
+        std::cout << "=============PROGRAMOWANIE DYNAMICZNE=============\n"
+            + dynamicProgramming.toString();
+    }
+}
+
 void MainMenu::autoTest()
 {
     TestsAutomation testsAutomation;
@@ -140,6 +157,17 @@ void MainMenu::showMenu()
             }
 
             case '5':
+            {
+                testing.startTimer();
+                testDynamicProgramming();
+                testing.stopTimer();
+
+                std::cout << "\nCzas wykonania algorytmu: " << testing.measuredTimeMicroSec() << "µs\n";
+
+                break;
+            }
+
+            case '6':
             {
                 autoTest();
                 break;

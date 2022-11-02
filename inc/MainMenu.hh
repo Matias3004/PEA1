@@ -4,6 +4,7 @@
 #include "StackImpl.hh"
 #include "BruteForce.hh"
 #include "BranchAndBound.hh"
+#include "DynamicProgramming.hh"
 
 class MainMenu
 {
@@ -14,7 +15,8 @@ class MainMenu
             "\n\t2. Wygeneruj losowy graf"
             "\n\t3. Algorytm przeglądu zupełnego (Brute Force)"
             "\n\t4. Algorytm podziału i ograniczeń (B&B)"
-            "\n\t5. Testy automatyczne"
+            "\n\t5. Programowanie dynamiczne"
+            "\n\t6. Testy automatyczne"
             "\n\t0. Zamknij program\n";
 
     public:
@@ -24,5 +26,6 @@ class MainMenu
         void loadGraph(); // Wczytywanie grafu
         void testBruteForce(); // Test algorytmu przeglądu zupełnego
         void testBranchAndBound(); // Test alrgorytmu podziału i ograniczeń
+        void testDynamicProgramming(); // Test programowania dynamicznego
         void autoTest(); // Obsługa testow
 };

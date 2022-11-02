@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"stack": "cpp",
+			"iostream": "cpp",
+			"istream": "cpp",
+			"chrono": "cpp",
+			"ostream": "cpp"
+		}
+	}
+}

@@ -4,7 +4,14 @@
 void TestsAutomation::menuTests()
 {
     int instanceSize;
-    std::cout << "=======================TESTY AUTOMATYCZNE=======================\n";
+    int algorithm;
+    std::cout << "================================TESTY AUTOMATYCZNE================================\n";
+    do
+    {
+        std::cout << "Wybierz algorytm [1 - Brute Force, 2 - Branch & Bound, 3 - Dynamic Programming]: ";
+        std::cin >> algorithm;
+    } while (algorithm < 1 || algorithm > 3);
+
     std::cout << "Podaj rozmiar instancji [6 / 8 / 9 / 10 / 12 / 13 / 14]: ";
     std::cin >> instanceSize;
 
@@ -12,7 +19,7 @@ void TestsAutomation::menuTests()
     {
     case 6: case 8: case 9: case 10: case 12: case 13: case 14:
     {
-        loopTests(instanceSize);
+        loopTests(instanceSize, algorithm);
         break;
     }
     default:
@@ -22,7 +29,7 @@ void TestsAutomation::menuTests()
     }
 }
 
-void TestsAutomation::loopTests(int instanceSize)
+void TestsAutomation::loopTests(int instanceSize, int algorithm)
 {
     Tests testing;
     Graph graph;
@@ -34,13 +41,22 @@ void TestsAutomation::loopTests(int instanceSize)
             numOfRuns = 100;
             break;
         case 12:
-            numOfRuns = 50;
+            if (algorithm == 1)
+                numOfRuns = 50;
+            else
+                numOfRuns = 100;
             break;
         case 13:
-            numOfRuns = 25;
+            if (algorithm == 1)
+                numOfRuns = 25;
+            else
+                numOfRuns = 100;
             break;
         case 14:
-            numOfRuns = 5;
+            if (algorithm == 1)
+                numOfRuns = 5;
+            else
+                numOfRuns = 100;
             break;
         default:
             break;
@@ -57,30 +73,64 @@ void TestsAutomation::loopTests(int instanceSize)
         }
         else
         {
-            BruteForce bruteForce(graph);
-            BranchAndBound branchAndBound(graph);
+            switch (algorithm)
+            {
+            case 1:
+            {
+                BruteForce bruteForce(graph);
 
-            std::cout << i + 1 << " pomiar Brute Force..." << std::endl;
-            testing.startTimer();
-            bruteForce.apply();
-            testing.stopTimer();
+                std::cout << i + 1 << " pomiar Brute Force..." << std::endl;
+                testing.startTimer();
+                bruteForce.apply();
+                testing.stopTimer();
 
-            if (instanceSize <= 10)
-                testing.addBruteForceResults(testing.measuredTimeMicroSec(), i);
-            else
-                testing.addBruteForceResults(testing.measuredTimeMilliSec(), i);
+                if (instanceSize <= 10)
+                    testing.addBruteForceResults(testing.measuredTimeMicroSec(), i);
+                else
+                    testing.addBruteForceResults(testing.measuredTimeMilliSec(), i);
 
-            std::cout << i + 1 << " pomiar Branch and Bound..." << std::endl;
-            testing.startTimer();
-            branchAndBound.apply();
-            testing.stopTimer();
+                auto filename = "BF-" + std::to_string(instanceSize);
+                testing.saveBFResults(filename, instanceSize, numOfRuns);
 
-            testing.addBranchAndBoundResults(testing.measuredTimeMicroSec(), i);
+                break;
+            }
+            case 2:
+            {
+                BranchAndBound branchAndBound(graph);
+
+                std::cout << i + 1 << " pomiar Branch and Bound..." << std::endl;
+                testing.startTimer();
+                branchAndBound.apply();
+                testing.stopTimer();
+
+                testing.addBranchAndBoundResults(testing.measuredTimeMicroSec(), i);
+
+                auto filename = "BB-" + std::to_string(instanceSize);
+                testing.saveBBResults(filename, numOfRuns);
+                
+                break;
+            }
+            case 3:
+            {
+                DynamicProgramming dynamicProgramming(graph);
+
+                std::cout << i + 1 << " pomiar Dynamic Programming..." << std::endl;
+                testing.startTimer();
+                dynamicProgramming.apply();
+                testing.stopTimer();
+
+                testing.addDynamicProgrammingResults(testing.measuredTimeMicroSec(), i);
+
+                auto filename = "DP-" + std::to_string(instanceSize);
+                testing.saveDPResults(filename, numOfRuns);
+
+                break;
+            }
+            default:
+                break;
+            }
         }
     }
     std::cout << "\nTesty zakończone\n" << std::endl;
     getchar();
-    
-    auto filename = std::to_string(instanceSize);
-    testing.saveResults(filename, instanceSize, numOfRuns);
 }

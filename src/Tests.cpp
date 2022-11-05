@@ -1,23 +1,65 @@
 #include "../inc/Tests.hh"
 #include <fstream>
 
-void Tests::saveResults(std::string filename, int instanceSize, int runs)
+void Tests::saveBFResults(std::string filename, int instanceSize, int runs)
 {
     std::ofstream file(filename + ".csv");
     if (file.good() == true)
     {
         if (instanceSize <= 10)
-            file << "Brute Force [µs], Branch And Bound [µs]" << std::endl;
+            file << "Brute Force [µs]" << std::endl;
         else 
-            file << "Brute Force [ms], Branch And Bound [µs]" << std::endl;
+            file << "Brute Force [ms]" << std::endl;
         for (int i = 0; i < runs; i++)
         {
-            file << bruteForceResults[i] << ","
-                << branchAndBoundResults[i] << std::endl;
+            file << bruteForceResults[i] << std::endl;
         }
-        file << "AVG [BF], AVG [B&B]" << std::endl;
-        file << calculateAverage(instanceSize, bruteForceResults) << ","
-            << calculateAverage(instanceSize, branchAndBoundResults) << std::endl;
+        file << "AVG [BF]" << std::endl;
+        file << calculateAverage(runs, bruteForceResults) << std::endl;
+
+        file.close();
+    }
+    else
+    {
+        std::cout << "Błąd zapisu" << std::endl;
+        getchar();
+    }
+}
+
+void Tests::saveBBResults(std::string filename, int runs)
+{
+    std::ofstream file(filename + ".csv");
+    if (file.good() == true)
+    {
+        file << "Branch & Bound [µs]" << std::endl;
+        for (int i = 0; i < runs; i++)
+        {
+            file << branchAndBoundResults[i] << std::endl;
+        }
+        file << "AVG [BF]" << std::endl;
+        file << calculateAverage(runs, branchAndBoundResults) << std::endl;
+
+        file.close();
+    }
+    else
+    {
+        std::cout << "Błąd zapisu" << std::endl;
+        getchar();
+    }
+}
+
+void Tests::saveDPResults(std::string filename, int runs)
+{
+    std::ofstream file(filename + ".csv");
+    if (file.good() == true)
+    {
+        file << "Dynamic Programming [µs]" << std::endl;
+        for (int i = 0; i < runs; i++)
+        {
+            file << dynamicProgrammingResults[i] << std::endl;
+        }
+        file << "AVG [BF]" << std::endl;
+        file << calculateAverage(runs, dynamicProgrammingResults) << std::endl;
 
         file.close();
     }
@@ -44,12 +86,6 @@ long Tests::measuredTimeMicroSec()
         (Tests::endTime - Tests::startTime).count();
 }
 
-// long Tests::measuredTimeMilliSec()
-// {
-//     return std::chrono::duration_cast<std::chrono::milliseconds>
-//         (Tests::endTime - Tests::startTime).count();
-// }
-
 long Tests::measuredTimeMilliSec()
 {
     return std::chrono::duration_cast<std::chrono::milliseconds>
@@ -65,6 +101,12 @@ void Tests::addBruteForceResults(unsigned long duration, int index)
 void Tests::addBranchAndBoundResults(unsigned long duration, int index)
 {
     branchAndBoundResults[index] = duration;
+    index++;
+}
+
+void Tests::addDynamicProgrammingResults(unsigned long duration, int index)
+{
+    dynamicProgrammingResults[index] = duration;
     index++;
 }
 

@@ -4,9 +4,10 @@
 #include "Tests.hh"
 #include "BruteForce.hh"
 #include "BranchAndBound.hh"
+#include "DynamicProgramming.hh"
 
 class TestsAutomation {
     public:
-        void loopTests(int);
+        void loopTests(int, int);
         void menuTests();
 };

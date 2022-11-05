@@ -17,8 +17,7 @@ class Tests
         void startTimer();
         void stopTimer();
         long measuredTimeMicroSec();
-        // long measuredTimeMilliSec();
-        long measuredTimeSeconds();
+        long measuredTimeMilliSec();
         void addBruteForceResults(unsigned long, int);
         void addBranchAndBoundResults(unsigned long, int);
         double calculateAverage(int, unsigned long*);

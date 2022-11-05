@@ -68,7 +68,7 @@ void TestsAutomation::loopTests(int instanceSize)
             if (instanceSize <= 10)
                 testing.addBruteForceResults(testing.measuredTimeMicroSec(), i);
             else
-                testing.addBruteForceResults(testing.measuredTimeSeconds(), i);
+                testing.addBruteForceResults(testing.measuredTimeMilliSec(), i);
 
             std::cout << i + 1 << " pomiar Branch and Bound..." << std::endl;
             testing.startTimer();

@@ -123,7 +123,7 @@ void MainMenu::showMenu()
                 if (instanceSize <= 10)
                     std::cout << "\nCzas wykonania algorytmu: " << testing.measuredTimeMicroSec() << "µs\n";
                 else
-                    std::cout << "\nCzas wykonania algorytmu: " << testing.measuredTimeSeconds() << "s\n";
+                    std::cout << "\nCzas wykonania algorytmu: " << testing.measuredTimeMilliSec() << "ms\n";
 
                 break;
             }

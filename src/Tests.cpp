@@ -9,7 +9,7 @@ void Tests::saveResults(std::string filename, int instanceSize, int runs)
         if (instanceSize <= 10)
             file << "Brute Force [µs], Branch And Bound [µs]" << std::endl;
         else 
-            file << "Brute Force [s], Branch And Bound [µs]" << std::endl;
+            file << "Brute Force [ms], Branch And Bound [µs]" << std::endl;
         for (int i = 0; i < runs; i++)
         {
             file << bruteForceResults[i] << ","
@@ -50,9 +50,9 @@ long Tests::measuredTimeMicroSec()
 //         (Tests::endTime - Tests::startTime).count();
 // }
 
-long Tests::measuredTimeSeconds()
+long Tests::measuredTimeMilliSec()
 {
-    return std::chrono::duration_cast<std::chrono::seconds>
+    return std::chrono::duration_cast<std::chrono::milliseconds>
         (Tests::endTime - Tests::startTime).count();
 }
 

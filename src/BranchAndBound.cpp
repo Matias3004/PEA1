@@ -7,7 +7,7 @@
 BranchAndBound::BranchAndBound(Graph graph)
 {
     count = graph.getCount(); // Pobranie ilości wierzchołkow w grafie
-    matrix = graph.getMatrix(); // 
+    matrix = graph.getMatrix(); // Pobranie macierzy z kosztami krawędzi
     uBound = INF; // Ustawienie ograniczenia gornego na "nieskończoność"
     tempCost = 0;
     outgoingEdges = new int[count]; // Utworzenie tablicy pomocniczej

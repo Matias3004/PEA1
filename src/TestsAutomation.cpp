@@ -8,9 +8,9 @@ void TestsAutomation::menuTests()
     std::cout << "================================TESTY AUTOMATYCZNE================================\n";
     do
     {
-        std::cout << "Wybierz algorytm [1 - Brute Force, 2 - Branch & Bound, 3 - Dynamic Programming]: ";
+        std::cout << "Wybierz algorytm [1 - Brute Force, 2 - Branch & Bound]: ";
         std::cin >> algorithm;
-    } while (algorithm < 1 || algorithm > 3);
+    } while (algorithm < 1 || algorithm > 2);
 
     std::cout << "Podaj rozmiar instancji [6 / 8 / 9 / 10 / 12 / 13 / 14]: ";
     std::cin >> instanceSize;
@@ -103,25 +103,6 @@ void TestsAutomation::loopTests(int instanceSize, int algorithm)
             }
             auto filename = "BB-" + std::to_string(instanceSize);
             testing.saveBBResults(filename, numOfRuns);
-
-            break;
-        }
-        case 3:
-        {
-            for (int i = 0; i < numOfRuns; i++)
-            {
-                graph.generateRandomGraph(instanceSize);
-                DynamicProgramming dynamicProgramming(graph);
-
-                std::cout << i + 1 << " pomiar Dynamic Programming..." << std::endl;
-                testing.startTimer();
-                dynamicProgramming.apply();
-                testing.stopTimer();
-
-                testing.addDynamicProgrammingResults(testing.measuredTimeMicroSec(), i);
-            }
-            auto filename = "DP-" + std::to_string(instanceSize);
-            testing.saveDPResults(filename, numOfRuns);
 
             break;
         }

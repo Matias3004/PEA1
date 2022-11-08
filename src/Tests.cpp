@@ -48,28 +48,6 @@ void Tests::saveBBResults(std::string filename, int runs)
     }
 }
 
-void Tests::saveDPResults(std::string filename, int runs)
-{
-    std::ofstream file(filename + ".csv");
-    if (file.good() == true)
-    {
-        file << "Dynamic Programming [µs]" << std::endl;
-        for (int i = 0; i < runs; i++)
-        {
-            file << dynamicProgrammingResults[i] << std::endl;
-        }
-        file << "AVG [BF]" << std::endl;
-        file << calculateAverage(runs, dynamicProgrammingResults) << std::endl;
-
-        file.close();
-    }
-    else
-    {
-        std::cout << "Błąd zapisu" << std::endl;
-        getchar();
-    }
-}
-
 void Tests::startTimer()
 {
     startTime = std::chrono::high_resolution_clock::now();
@@ -101,12 +79,6 @@ void Tests::addBruteForceResults(unsigned long duration, int index)
 void Tests::addBranchAndBoundResults(unsigned long duration, int index)
 {
     branchAndBoundResults[index] = duration;
-    index++;
-}
-
-void Tests::addDynamicProgrammingResults(unsigned long duration, int index)
-{
-    dynamicProgrammingResults[index] = duration;
     index++;
 }
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../inc/BruteForce.hh"
 
+// Konstruktor klasy Brute Force
 BruteForce::BruteForce(Graph graph)
 {
     count = graph.getCount();
@@ -13,12 +14,15 @@ BruteForce::BruteForce(Graph graph)
         visited[i] = false;
 }
 
+// Destuktor klasy Brute Force
 BruteForce::~BruteForce() {}
 
+// Metoda odpowiedzialna za przegląd kolejnych rozwiązań
 bool BruteForce::recursion(int node)
 {
     pathHelper.push(node);
 
+    // Sprawdza czy 
     if (pathHelper.getSize() != count)
     {
         visited[node] = true;

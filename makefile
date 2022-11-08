@@ -1,13 +1,13 @@
 CC = clang++
-CFLAGS = -Wall -g -std=c++11
+CFLAGS = -Wall -Wextra -Wpedantic -g -std=c++11
 
 all: PEA-Projekt1
 
 start: PEA-Projekt1
 	./PEA-Projekt1
 
-PEA-Projekt1: bin bin/main.o bin/StackImpl.o bin/Graph.o bin/BruteForce.o bin/BranchAndBound.o bin/DynamicProgramming.o bin/MainMenu.o bin/TestsAutomation.o bin/Tests.o
-	$(CC) $(CFLAGS) -o PEA-Projekt1 bin/main.o bin/StackImpl.o bin/Graph.o bin/BruteForce.o bin/BranchAndBound.o bin/DynamicProgramming.o bin/MainMenu.o bin/TestsAutomation.o bin/Tests.o
+PEA-Projekt1: bin bin/main.o bin/StackImpl.o bin/Graph.o bin/BruteForce.o bin/BranchAndBound.o bin/MainMenu.o bin/TestsAutomation.o bin/Tests.o
+	$(CC) $(CFLAGS) -o PEA-Projekt1 bin/main.o bin/StackImpl.o bin/Graph.o bin/BruteForce.o bin/BranchAndBound.o bin/MainMenu.o bin/TestsAutomation.o bin/Tests.o
 
 bin:
 	mkdir bin
@@ -26,9 +26,6 @@ bin/BruteForce.o: src/BruteForce.cpp inc/BruteForce.hh
 
 bin/BranchAndBound.o: src/BranchAndBound.cpp inc/BranchAndBound.hh
 	$(CC) -c $(CFLAGS) -o bin/BranchAndBound.o src/BranchAndBound.cpp
-
-bin/DynamicProgramming.o: src/DynamicProgramming.cpp inc/DynamicProgramming.hh
-	$(CC) -c $(CFLAGS) -o bin/DynamicProgramming.o src/DynamicProgramming.cpp
 
 bin/MainMenu.o: src/MainMenu.cpp inc/MainMenu.hh
 	$(CC) -c $(CFLAGS) -o bin/MainMenu.o src/MainMenu.cpp

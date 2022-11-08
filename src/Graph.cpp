@@ -1,5 +1,6 @@
 #include "../inc/Graph.hh"
 #include <fstream>
+#include <iostream>
 #include <time.h>
 
 Graph::Graph() {}
@@ -39,6 +40,9 @@ bool Graph::readGraph(std::string filename)
     file.close();
 
     matrix = temp;
+
+    std::cout << std::endl << "WCZYTANY GRAF:" << std::endl;
+    std::cout << std::endl << toString() << std::endl;
 
     return true;
 }

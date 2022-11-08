@@ -2,7 +2,6 @@
 
 int main()
 {
-    int test;
     MainMenu mainMenu;
     mainMenu.showMenu();
 

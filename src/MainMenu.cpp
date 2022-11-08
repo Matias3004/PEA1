@@ -107,6 +107,9 @@ void MainMenu::showMenu()
             case '1':
             {
                 loadGraph();
+                std::cout << std::endl << "WCZYTANY GRAF:" << std::endl;
+                std::cout << std::endl << graph.toString() << std::endl;
+
                 break;
             }
 
@@ -128,6 +131,10 @@ void MainMenu::showMenu()
                 }
                 preview.append(graph.toString());
                 graph.infDiagram();
+
+                std::cout << std::endl << "WYGENEROWANY GRAF:" << std::endl;
+                std::cout << std::endl << graph.toString() << std::endl;
+
                 break;
             }
 

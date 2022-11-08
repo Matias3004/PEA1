@@ -7,6 +7,7 @@ Graph::Graph() {}
 
 Graph::~Graph() {}
 
+// Metoda wczytująca graf z podanego pliku *.txt
 bool Graph::readGraph(std::string filename)
 {
     int **temp;
@@ -41,12 +42,10 @@ bool Graph::readGraph(std::string filename)
 
     matrix = temp;
 
-    std::cout << std::endl << "WCZYTANY GRAF:" << std::endl;
-    std::cout << std::endl << toString() << std::endl;
-
     return true;
 }
 
+// Metoda ustawiająca wartości na przekątnej grafu na -1
 bool Graph::infDiagram()
 {
     if (!vertexCount)
@@ -54,7 +53,7 @@ bool Graph::infDiagram()
     else
     {
         for (int i = 0; i < vertexCount; ++i)
-            matrix[i][i] = INF;
+            matrix[i][i] = -1;
 
         return true;
     }
@@ -70,6 +69,7 @@ int** Graph::getMatrix()
     return matrix;
 }
 
+// Metoda generująca losowy graf o podanej wielkości
 void Graph::generateRandomGraph(int size)
 {
     vertexCount = size;
@@ -89,6 +89,7 @@ void Graph::generateRandomGraph(int size)
     infDiagram();
 }
 
+// Metoda wyświetlająca graf
 std::string Graph::toString()
 {
     std::string graph = "";

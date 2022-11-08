@@ -59,11 +59,13 @@ bool Graph::infDiagram()
     }
 }
 
+// Metoda zwracająca ilość wierzchołków w grafie
 int Graph::getCount()
 {
     return vertexCount;
 }
 
+// Metoda zwracająca graf w postaci macierzy
 int** Graph::getMatrix()
 {
     return matrix;
